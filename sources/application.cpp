@@ -7,8 +7,8 @@
 #include <SFML/Graphics.hpp>
 
 // Global constants (defaults)
-const int DEFAULT_WINDOW_WIDTH = 1000;
-const int DEFAULT_WINDOW_HEIGHT = 1000;
+const int DEFAULT_WINDOW_WIDTH = 500;
+const int DEFAULT_WINDOW_HEIGHT = 500;
 const int DEFAULT_GRID_WIDTH = 4;
 const int DEFAULT_GRID_HEIGHT = 4;
 const int DEFAULT_OBSTACLE_AMOUNT = 4;
