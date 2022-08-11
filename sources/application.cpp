@@ -196,9 +196,9 @@ void Application::run_simulation()
             }
         }
         // Run through the mapping algorithm once
-        if (m_mode == ApplicationMode::AUTO || is_key_pressed) {
+        if (m_keep_running && (m_mode == ApplicationMode::AUTO || is_key_pressed)) {
             run_algorithm_once(server, plotter);
-            sf::sleep(sf::milliseconds(500));
+            sf::sleep(sf::milliseconds(100));
         }
         // Draw everything
         window.clear(sf::Color(170, 170, 170));
@@ -216,12 +216,20 @@ void Application::generate_random_obstacles()
     std::srand(std::time(nullptr));
     // Generate random obstacles
     for (int i = 0; i < m_obstacle_amount; i++) {
-        int number1 = std::rand();
-        int number2 = std::rand();
-        double rand_max_plus_one = static_cast<double>(RAND_MAX) + 1.0;
-        int x = static_cast<double>(number1) / rand_max_plus_one * m_grid_width;
-        int y = static_cast<double>(number2) / rand_max_plus_one * m_grid_height;
-
+        int x = 0;
+        int y = 0;
+        // Do not put an obstacle at the origin
+        while (x == 0 && y == 0) {
+            x = std::rand() % m_grid_width;
+            y = std::rand() % m_grid_height;
+            // Make sure x and y are not already an obstacle
+            for (int i = 0; i < m_obstacles.size() && !(x == 0 && y == 0); i++) {
+                if (Vector2(x, y) == m_obstacles[i]) {
+                    x = 0;
+                    y = 0;
+                }
+            }
+        }
         m_obstacles.push_back(Vector2(x, y));
     }
 }
