@@ -4,23 +4,16 @@
 #define PLOTTER_H
 
 // Includes
-#include <vector>
-#include <SFML/Graphics.hpp>
+#include "data_types.h"
+
+class Application;
 
 class Plotter {
 private:
-    sf::RenderWindow m_window;
-    int m_grid_width;
-    int m_grid_height;
-    // Helper functions
-    void plot_grid_lines();
-    void plot_robot(sf::Vector2i robot_position, int robot_orientation);
-    void plot_obstacles(std::vector<sf::Vector2i> obstacles);
+    Application& m_app;
 public:
-    Plotter(sf::VideoMode mode, int grid_width, int grid_height);
-    bool is_open() const;
-    void handle_events();
-    void plot(sf::Vector2i robot_position, int robot_orientation, std::vector<sf::Vector2i> obstacles);
+    Plotter(Application&);
+    void plot(const std::vector<Vector2>& obstacles);
 };
 
 // End header guard
