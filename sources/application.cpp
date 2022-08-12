@@ -180,6 +180,7 @@ void Application::run_simulation()
     sf::RenderWindow window(sf::VideoMode(m_window_width, m_window_height), "Robot Mapping Simulator");
 
     bool is_key_pressed = false;
+    bool has_iterations_printed = false;
 
     // Run main loop
     while (window.isOpen()) {
@@ -196,9 +197,16 @@ void Application::run_simulation()
             }
         }
         // Run through the mapping algorithm once
-        if (m_keep_running && (m_mode == ApplicationMode::AUTO || is_key_pressed)) {
-            run_algorithm_once(server, plotter);
-            sf::sleep(sf::milliseconds(100));
+        if (m_keep_running) {
+            if (m_mode == ApplicationMode::AUTO || is_key_pressed) {
+                run_algorithm_once(server, plotter);
+                sf::sleep(sf::milliseconds(100));
+            }
+        // Print number of iterations if the mapping algorithm is done
+        } else if (!has_iterations_printed) {
+            std::cout << std::endl;
+            std::cout << "Number of iterations: " << m_number_of_iterations << std::endl;
+            has_iterations_printed = true;
         }
         // Draw everything
         window.clear(sf::Color(170, 170, 170));
@@ -263,6 +271,9 @@ void Application::run_algorithm_once(RobotServer& server, Plotter& plotter)
     if (m_algorithms[alg_index].plot != nullptr) {
         m_algorithms[alg_index].plot(server, plotter);
     }
+
+    // Add one to the number of iterations
+    m_number_of_iterations++;
 }
 
 void Application::draw_grid_lines(sf::RenderWindow& window)
