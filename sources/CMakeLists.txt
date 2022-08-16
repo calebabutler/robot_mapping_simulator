@@ -2,8 +2,8 @@
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(${PROJECT_NAME} main.cpp plotter.cpp robot_server.cpp
-    application.cpp algorithms.cpp random_algorithm.cpp
-    no_backtrack_random_algorithm.cpp)
+    application.cpp algorithms/algorithms.cpp algorithms/random_algorithm.cpp
+    algorithms/no_backtrack_random_algorithm.cpp algorithms/helper_functions.cpp)
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-window sfml-system)
 
 if (WIN32)

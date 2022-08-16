@@ -196,7 +196,7 @@ void Application::run_simulation()
                 is_key_pressed = false;
             }
         }
-        // Run through the mapping algorithm once
+        // Run through the mapping algorithm one step
         if (m_keep_running) {
             if (m_mode == ApplicationMode::AUTO || is_key_pressed) {
                 run_algorithm_once(server, plotter);
@@ -259,16 +259,16 @@ void Application::run_algorithm_once(RobotServer& server, Plotter& plotter)
         exit(-1);
     }
 
-    if (m_algorithms[alg_index].sense != nullptr) {
+    if (m_algorithms[alg_index].sense != nullptr && m_keep_running) {
         m_algorithms[alg_index].sense(server);
     }
-    if (m_algorithms[alg_index].plan != nullptr) {
+    if (m_algorithms[alg_index].plan != nullptr && m_keep_running) {
         m_algorithms[alg_index].plan(server);
     }
-    if (m_algorithms[alg_index].act != nullptr) {
+    if (m_algorithms[alg_index].act != nullptr && m_keep_running) {
         m_algorithms[alg_index].act(server);
     }
-    if (m_algorithms[alg_index].plot != nullptr) {
+    if (m_algorithms[alg_index].plot != nullptr && m_keep_running) {
         m_algorithms[alg_index].plot(server, plotter);
     }
 

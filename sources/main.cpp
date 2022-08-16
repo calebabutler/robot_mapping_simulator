@@ -1,6 +1,6 @@
 
 // Includes
-#include "algorithms.h"
+#include "algorithms/algorithms.h"
 #include "application.h"
 #include <cstring>
 #include <iostream>
