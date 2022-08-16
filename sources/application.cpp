@@ -268,7 +268,7 @@ void Application::run_algorithm_once(RobotServer& server, Plotter& plotter)
     if (m_algorithms[alg_index].act != nullptr && m_keep_running) {
         m_algorithms[alg_index].act(server);
     }
-    if (m_algorithms[alg_index].plot != nullptr && m_keep_running) {
+    if (m_algorithms[alg_index].plot != nullptr) {
         m_algorithms[alg_index].plot(server, plotter);
     }
 
