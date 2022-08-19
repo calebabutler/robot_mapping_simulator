@@ -29,6 +29,10 @@ enum class Move {
 // This function calculates the left, front, and right of the robot.
 Surroundings calculate_robot_surroundings(RobotServer&);
 
+// This function does the same as the function above except it is given a
+// position and orientation rather than a robot server.
+Surroundings calculate_pose_surroundings(Vector2 position, int orientation);
+
 // This function says if the Vector2 is a member of the array.
 bool is_member(const std::vector<Vector2>&, Vector2);
 

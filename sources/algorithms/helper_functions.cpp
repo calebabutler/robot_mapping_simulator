@@ -4,16 +4,19 @@
 
 Surroundings calculate_robot_surroundings(RobotServer& server)
 {
-    Surroundings surroundings;
+    return calculate_pose_surroundings(server.get_position(), server.get_orientation());
+}
 
-    Vector2 position = server.get_position();
+Surroundings calculate_pose_surroundings(Vector2 position, int orientation)
+{
+    Surroundings surroundings;
 
     Vector2 overhead_top = position + Vector2(0, 1);
     Vector2 overhead_left = position + Vector2(-1, 0);
     Vector2 overhead_right = position + Vector2(1, 0);
     Vector2 overhead_bottom = position + Vector2(0, -1);
 
-    switch (server.get_orientation()) {
+    switch (orientation) {
     case 0:
         surroundings.left = overhead_left;
         surroundings.front = overhead_top;
