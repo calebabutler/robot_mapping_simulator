@@ -63,6 +63,7 @@ public:
                        void (*plot)(RobotServer&, Plotter&));
     void print_algorithms();
     void step_through();
+    bool has_stopped();
 
     // Member function for Plotter
     void set_found_obstacles(const std::vector<Vector2>&);

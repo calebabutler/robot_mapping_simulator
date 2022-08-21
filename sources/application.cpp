@@ -82,6 +82,11 @@ void Application::step_through()
     }
 }
 
+bool Application::has_stopped()
+{
+    return m_step_type == StepThroughType::NO_MORE_STEPS;
+}
+
 void Application::generate_random_obstacles()
 {
     m_obstacles.reserve(m_obstacle_amount);
