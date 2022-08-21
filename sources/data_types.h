@@ -3,12 +3,21 @@
 #ifndef DATA_TYPES_H
 #define DATA_TYPES_H
 
+// Includes
 #include <vector>
-#include <SFML/Graphics.hpp>
 
-// These typedefs exist to simplify code and to (weakly) separate code from SFML
-// if I want to remove SFML as a dependency later
-typedef sf::Vector2i Vector2;
+class Vector2 {
+public:
+    // Data members
+    int x;
+    int y;
+    // Member functions
+    Vector2(int, int);
+    Vector2();
+    Vector2 operator+(Vector2 other) const;
+    bool operator==(Vector2 other) const;
+    bool operator!=(Vector2 other) const;
+};
 
 // End header guard
 #endif

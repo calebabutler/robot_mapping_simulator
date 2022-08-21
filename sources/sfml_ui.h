@@ -5,6 +5,7 @@
 
 // Includes
 #include "application.h"
+#include <SFML/Graphics.hpp>
 
 class SFMLUI {
 private:

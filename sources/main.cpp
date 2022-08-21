@@ -5,7 +5,6 @@
 #include <cstring>
 #include <iostream>
 #include <vector>
-#include <SFML/Graphics.hpp>
 
 // Local types
 enum class Mode {

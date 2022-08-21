@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <SFML/Graphics.hpp>
 
 Application::Application(const Parameters& parameters) : m_server(*this), m_plotter(*this)
 {
@@ -46,7 +45,7 @@ void Application::process_parameters(const Parameters& parameters)
     } else if (m_obstacle_amount >= m_grid_width * m_grid_height) {
         std::cerr << "Obstacle amount is too big." << std::endl;
     } else if (!is_algorithm_in_algorithms) {
-        std::cerr << "That algorithm is not one available." << std::endl;
+        std::cerr << "That algorithm is not available." << std::endl;
     } else {
         m_step_type = StepThroughType::FIRST_STEP;
     }
