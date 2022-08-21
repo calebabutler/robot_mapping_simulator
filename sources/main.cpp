@@ -13,6 +13,7 @@ enum class Mode {
     LIST_DEFAULTS,
     LIST_ALGORITHMS,
     RUN,
+    INVALID_ARGUMENT,
 };
 
 enum class UI {
@@ -80,6 +81,9 @@ int perform_mode(const Parameters& parameters, Mode mode, UI ui)
         print_parameters(parameters);
         return_code = run_program(parameters, ui);
         break;
+    case Mode::INVALID_ARGUMENT:
+        std::cout << "Error: Invalid argument." << std::endl;
+        break;
     }
     return return_code;
 }
@@ -108,8 +112,9 @@ void parse_arguments(int argc, char* argv[], Parameters& parameters, Mode& mode,
 {
     LongOptionWithArgument last_option;
     bool is_argument = false;
+    bool done_processing = false;
 
-    for (int i = 1; i < argc; i++) {
+    for (int i = 1; i < argc && !done_processing; i++) {
         if (is_argument) {
             is_argument = false;
             switch (last_option) {
@@ -147,6 +152,9 @@ void parse_arguments(int argc, char* argv[], Parameters& parameters, Mode& mode,
                 last_option = LongOptionWithArgument::ALGORITHM;
             } else if (std::strcmp(argv[i], "-console") == 0) {
                 ui = UI::CONSOLE;
+            } else {
+                mode = Mode::INVALID_ARGUMENT;
+                done_processing = true;
             }
         }
     }
