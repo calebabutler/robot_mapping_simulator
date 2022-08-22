@@ -65,11 +65,11 @@ Then run cmake, this project's build system:
 Finally, copy the built SFML dll files into the directory with the
 executable:
 
-    > cp .\SFML\SFML-2.5.1\lib\Debug\*.dll .\sources\Debug\
+    > cp .\SFML\SFML-2.5.1\lib\Debug\*.dll .\Debug\
 
 Then run the program:
 
-    > .\sources\Debug\robot_mapping_simulator.exe
+    > .\Debug\robot_mapping_simulator.exe
 
 Doing incremental builds
 ------------------------
@@ -82,7 +82,7 @@ are already downloaded and built. All you need to do is:
 
 Then run the program:
 
-    > .\sources\Debug\robot_mapping_simulator.exe
+    > .\Debug\robot_mapping_simulator.exe
 
 Pushing changes to GitHub
 -------------------------
@@ -141,10 +141,10 @@ repository. Run:
     > cd build
     > cmake ..
     > cmake --build .
-    > ./sources/robot_mapping_simulator
+    > ./robot_mapping_simulator
 
 To do future incremental builds:
 
     > cd build
     > cmake --build .
-    > ./sources/robot_mapping_simulator
+    > ./robot_mapping_simulator
